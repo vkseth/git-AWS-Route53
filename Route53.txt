@@ -1,0 +1,30 @@
+Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. 
+Route 53 connects user requests to internet applications running on AWS or on-premises.
+
+
+Types of records in Route 53
+
+A or AAA  - Map name to IP address ( IPV4 and IPV6 )
+
+CNAME - one Name to another Name 
+
+PTR - Opp of A or AAA    - IP to Name 
+
+SRV - Application specific value that identify servers
+
+TXT - collection of one or more string 
+
+
+
+Alias in Route 53
+
+It allow to route to selected AWS resources like elastic load balancer 
+autmatically update the records based on the resources
+Alias based queries are free
+No TTL here 
+
+
+
+
+
+

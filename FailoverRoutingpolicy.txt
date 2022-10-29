@@ -1,0 +1,135 @@
+Failover Routing
+
+It work on Primary and second server 
+help if primary server goes down we can work with secondry server 
+
+Work on Health Check 
+
+
+Lab
+
+Step to follow 
+
+Need 2 servers 
+Intall httpd/apache 
+Create Simple record in Route53
+Create Health Check 
+Create Failover record and associate health check 
+
+
+
+
+Step 1. Create 2 EC2 Servers - Redhat
+
+Step 2. Install apache 
+#Install apache on both the server 
+
+#Login to Redhat server 1 
+
+sudo yum install httpd -y 
+sudo service httpd start
+sudo nano /var/www/html/index.html   - server1
+
+#Repeat above steps for server 2 
+
+sudo yum install httpd -y 
+sudo service httpd start
+sudo nano /var/www/html/index.html   - server2
+
+
+Step 3. Create Simple record in Route53 
+
+Step for server 1 
+
+Create simple record 
+Go to route53 - select the hosted zone - create record
+
+in record name - server1.vickydevops.tk 
+in record type - A record
+value - enter the IP address of first server
+TTL - 
+Routing policy - simple 
+
+Repeat the same steps for server 2
+
+Go to route53 - select the hosted zone - create record
+
+Create simple record 
+In record name - server2.vickydevops.tk 
+in record type - A record
+value - enter the IP address of second server
+TTL - 
+Routing policy - simple 
+
+
+Step 4. Create Health Check 
+
+3 types of health check 
+
+1. endpoint - simple as returing 200 message if the website is running or not 
+2. calculated health check  - look for other health check and than do some calculation 
+3. cloudwatch alarm - trigger cloudwatch 
+
+
+Go to Route53 - Select Healthcheck 
+
+Name - server1
+What to monitor -  Enpoint 
+In Monitor an endpoint - 
+
+Specify endpoint by - IP 
+Protocol - HTTP 
+IP address - mention server Public IP here of server1
+Host name - server1.vickydevops.tk
+Port * - 80 
+Path - leave 
+Create alarm - No 
+Create health check 
+
+
+Repeat same step for server2
+
+Name - server2
+What to monitor -  Enpoint 
+In Monitor an endpoint - 
+
+Specify endpoint by - IP 
+Protocol - HTTP 
+IP address - mention server Public IP here of server1
+Host name - server2.vickydevops.tk
+Port * - 80 
+Path - leave 
+Create alarm - No 
+Create health check 
+
+
+Wait for the healthcheck status to turn to green 
+
+
+Step 5 Create Failover record and associate health check 
+
+Create failover record 
+
+In record name - failover.vickydevops.tk 
+in record type - A record
+value - enter the IP address of first server
+TTL - 
+Routing policy - failover 
+Failover record type - primary 
+Health check ID - select server1 healthcheck 
+Record ID - 1
+
+Create another record 
+
+In record name - failover.vickydevops.tk 
+in record type - A record
+value - enter the IP address of second server
+TTL - 
+Routing policy - failover 
+Failover record type - secondry 
+Health check ID - select server2 healthcheck 
+Record ID - 2
+
+
+To verify - shutdown server1 - now with healthcheck configure it will route traffic to server2 automatically
+

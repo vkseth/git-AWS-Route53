@@ -1,0 +1,31 @@
+Lab -  
+
+Login to Redhat EC2 machine 
+
+#Install Docker 
+
+sudo yum install docker -y 
+sudo service docker start
+sudo usermod -aG docker ec2-usermod
+
+#run one nginx container on port 8084
+
+docker container run -itd -p 8084:80 nginx
+
+#public IP of the server 
+
+Go to AWS managment console - EC2 - select machine - In details - copy public IP or elastic IP 
+
+#go to route 53 - - 
+
+select the hosted zone - create record - 
+in the record name enter the name of your choice and in value enter the public IP of the server 
+in the routing policy make sure simple is selected and than create record
+
+
+#To verify go to browser and enter the name along with container port 
+
+For example - http://nginx.vickydevops.tk:8084
+
+Troubleshooting 
+check security group attached to machine
