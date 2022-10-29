@@ -1,0 +1,44 @@
+Geolocation routing 
+enables customers to choose the resources that serve their traffic based on the geographic location 
+of their users
+
+
+
+Need 2 servers 
+Make sure both servers are in different Region 
+
+let suppose create one server in Mumbai and other server in NV
+
+
+
+For server which is in NV location  select location as North america or something 
+For server which is in Mumbai location  select location as default 
+
+
+
+Go to Route53 - select the hosted zone - Create Record
+In Routing policy - select Geolocation
+Record type - A
+Record name - geolocation
+Alias or Value
+Alias - Alias to another record in this hosted zone 
+value - public IP
+Health check ID - (optional)
+Record ID - server1
+Location - North america
+
+
+Go to Route53 - select the hosted zone - Create Record
+In Routing policy - select Geolocation
+Record type - A
+Record name - geolocation
+Alias or Value
+Alias - Alias to another record in this hosted zone 
+value - public IP
+Health check ID - (optional)
+Record ID - server1
+Location - default
+
+
+To verify go to below website 
+https://www.whatsmydns.net/

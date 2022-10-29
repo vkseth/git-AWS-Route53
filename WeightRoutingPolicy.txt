@@ -115,4 +115,5 @@ Verify
 
 nslookup 
 dig 
+https://www.whatsmydns.net/
 
