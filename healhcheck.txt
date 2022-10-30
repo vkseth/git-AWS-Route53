@@ -3,3 +3,25 @@
 1. endpoint - simple as returing 200 message if the website is running or not 
 2. calculated health check  - look for other health check and than do some calculation 
 3. cloudwatch alarm - trigger cloudwatch 
+
+
+How to create healthCheck 
+
+Need one EC2 server 
+Install httpd 
+Make sure port 80 is enable in security group 
+
+Go to Route53 - Select Healthcheck 
+
+Name - server1
+What to monitor -  Enpoint 
+In Monitor an endpoint - 
+
+Specify endpoint by - IP 
+Protocol - HTTP 
+IP address - mention server Public IP here of server1
+Host name - server1.vickydevops.tk
+Port * - 80 
+Path - leave 
+Create alarm - No 
+Create health check 
