@@ -6,8 +6,6 @@ Routing policies
 
 1. Simple Routing
 
-simple routing where we need to map name to IP address 
-
 2. Weighted Routing
 
 3. Geolocation Routing

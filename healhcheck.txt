@@ -1,0 +1,5 @@
+3 types of health check 
+
+1. endpoint - simple as returing 200 message if the website is running or not 
+2. calculated health check  - look for other health check and than do some calculation 
+3. cloudwatch alarm - trigger cloudwatch 
